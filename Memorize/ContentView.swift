@@ -12,15 +12,12 @@ import SwiftUI
 
 struct ContentView: View {
     let emojies = ["😈", "🕷️", "👻", "🎃", "🧙", "😱", "👹", "🧟", "👺", "🧛🏿‍♂️"]
-    @State var cardCount: Int = 4
+    var modelView: EmojiMemoryGame
+
     
     var body: some View {
-        VStack {
-            ScrollView {
-                cards
-            }
-            Spacer()
-            cardCountAdjusters
+        ScrollView {
+            cards
         }
         .padding()
     }
@@ -28,7 +25,7 @@ struct ContentView: View {
     
     var cards: some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 120))]) {
-            ForEach(0..<cardCount, id: \.self) { index in
+            ForEach(emojies.indices, id: \.self) { index in
                 CardVieW(content: emojies[index])
                     .aspectRatio(2/3, contentMode: .fit)
             }
@@ -36,7 +33,7 @@ struct ContentView: View {
         .foregroundColor(.orange)
     }
     
-    
+ /*
     var cardCountAdjusters: some View {
         HStack {
             cardRemover
@@ -65,6 +62,8 @@ struct ContentView: View {
     var cardAdder: some View {
         cardCountAdjuster(by: 1, symbol: "rectangle.stack.fill.badge.plus")
     }
+  
+  */
 }
 
 
