@@ -4,9 +4,7 @@
 //
 //  Created by Berke Yılmaz on 26.01.2025.
 //
-
-
-
+// View
 
 import SwiftUI
 
