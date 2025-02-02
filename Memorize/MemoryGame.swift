@@ -49,7 +49,7 @@ struct MemoryGame <CardContent> where CardContent: Equatable {
     }
     
     struct Card: Equatable, Identifiable { // Equatable --> == esitlenebilir yaptik.
-        var isFaceUp = false
+        var isFaceUp = true
         var isMatched = false
         var content: CardContent // Herhangi bir tür olabilir. Bunu en yüksek dereceli kapsamda belirtmeliyiz.
         var id: String

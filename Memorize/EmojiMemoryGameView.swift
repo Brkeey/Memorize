@@ -17,9 +17,9 @@ struct EmojiMemoryGameView: View {
             cards
                 .foregroundColor(.orange)
                 .animation(.default, value: viewModel.cards) // Animasyonun uygulanabilmesi icin animasyonu uyguladıgımız seyin esitlenebilir == Equatable olmasi gerekir.
-            Button("Shuffle") {
-                viewModel.shuffle()
-            }
+                Button("Shuffle") {
+                    viewModel.shuffle()
+                }
         }
         .padding()
     }
