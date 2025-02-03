@@ -16,9 +16,10 @@ struct EmojiMemoryGameView: View {
         VStack {
             cards
                 .foregroundColor(.orange)
-                .animation(.default, value: viewModel.cards) // Animasyonun uygulanabilmesi icin animasyonu uyguladıgımız seyin esitlenebilir == Equatable olmasi gerekir.
                 Button("Shuffle") {
-                    viewModel.shuffle()
+                    withAnimation {
+                        viewModel.shuffle()
+                    }
                 }
         }
         .padding()
@@ -29,7 +30,9 @@ struct EmojiMemoryGameView: View {
             CardView(card)
                 .padding(4)
                 .onTapGesture {
-                    viewModel.choose(card)
+                    withAnimation {
+                        viewModel.choose(card)
+                    }
                 }
         }
     }

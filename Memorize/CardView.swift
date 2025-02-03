@@ -27,6 +27,8 @@ struct CardView: View {
                     .multilineTextAlignment(.center)
                     .aspectRatio(1, contentMode: .fit)
                     .padding(Constants.pie.inset)
+                    .rotationEffect(.degrees(card.isMatched ? 360 : 0))
+                    .animation(.easeInOut(duration: 1), value: card.isMatched) // easeInOut ile animasyon suresini kontrol edebiliriz.
             )
             .padding(Constants.inset)
             .cardify(isFaceUp: card.isFaceUp)
