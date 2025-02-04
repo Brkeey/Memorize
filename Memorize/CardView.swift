@@ -28,7 +28,7 @@ struct CardView: View {
                     .aspectRatio(1, contentMode: .fit)
                     .padding(Constants.pie.inset)
                     .rotationEffect(.degrees(card.isMatched ? 360 : 0))
-                    .animation(.easeInOut(duration: 1), value: card.isMatched) // easeInOut ile animasyon suresini kontrol edebiliriz.
+                    .animation(.spin(duaration: 1), value: card.isMatched) //
             )
             .padding(Constants.inset)
             .cardify(isFaceUp: card.isFaceUp)
@@ -51,6 +51,11 @@ struct CardView: View {
     }
 }
 
+extension Animation {
+    static func spin(duaration: TimeInterval) -> Animation {
+        .linear(duration: 1).repeatForever(autoreverses: false)
+    }
+}
 
 typealias Card = MemoryGame<String>.Card
 

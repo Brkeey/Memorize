@@ -10,6 +10,7 @@ import Foundation
 
 struct MemoryGame <CardContent> where CardContent: Equatable {
     private(set) var cards: [Card]
+    private(set) var score = 0
     
     init(numberOfPairsOfCards: Int, cardContentFactory: (Int) -> CardContent) {
         cards = []
@@ -35,6 +36,14 @@ struct MemoryGame <CardContent> where CardContent: Equatable {
                     if cards[chosenIndex].content == cards[potentialMatchIndex].content {
                         cards[potentialMatchIndex].isMatched = true
                         cards[chosenIndex].isMatched = true
+                        score += 2
+                    } else {
+                        if cards[chosenIndex].hasBeenSeen {
+                            score -= 1
+                        }
+                        if cards[potentialMatchIndex].hasBeenSeen {
+                            score -= 1
+                        }
                     }
                 } else {
                     indexOfTheOneAndOnlFaceUpCard = chosenIndex
@@ -49,7 +58,14 @@ struct MemoryGame <CardContent> where CardContent: Equatable {
     }
     
     struct Card: Equatable, Identifiable { // Equatable --> == esitlenebilir yaptik.
-        var isFaceUp = false
+        var isFaceUp = false {
+            didSet {
+                if oldValue && !isFaceUp {
+                    hasBeenSeen = true
+                }
+            }
+        }
+        var hasBeenSeen = false
         var isMatched = false
         var content: CardContent // Herhangi bir tür olabilir. Bunu en yüksek dereceli kapsamda belirtmeliyiz.
         var id: String
